@@ -4,24 +4,24 @@
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="TMDB Load Test - Person Changes">
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments">
-          <elementProp name="API_KEY" elementType="Argument">
-            <stringProp name="Argument.name">API_KEY</stringProp>
-            <stringProp name="Argument.value">e550dac250218942f4f91391bb6dccc5</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="PAGE_NUMBER" elementType="Argument">
-            <stringProp name="Argument.name">PAGE_NUMBER</stringProp>
-            <stringProp name="Argument.value">1</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="ENDPOINT_PATH" elementType="Argument">
-            <stringProp name="Argument.name">ENDPOINT_PATH</stringProp>
+          <elementProp name="end_point" elementType="Argument">
+            <stringProp name="Argument.name">end_point</stringProp>
             <stringProp name="Argument.value">/3/person/changes</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="TOKEN" elementType="Argument">
-            <stringProp name="Argument.name">TOKEN</stringProp>
-            <stringProp name="Argument.value">Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNTUwZGFjMjUwMjE4OTQyZjRmOTEzOTFiYjZkY2Nj NSIsInN1YiI6IjYwYWY2MDAxYzVjMWVmMDA1OWU2MzVlYiIsInNjb3BlcyI6WyJhcGlfcmVh ZCJdLCJ2ZXJzaW9uIjoxfQ.wGzbkGdNmzm7cWjLfyNFVGdpLJKMelfCaoEbUuYs-CA</stringProp>
+          <elementProp name="page" elementType="Argument">
+            <stringProp name="Argument.name">page</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="api_key" elementType="Argument">
+            <stringProp name="Argument.name">api_key</stringProp>
+            <stringProp name="Argument.value">e550dac250218942f4f91391bb6dccc5</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Authorization" elementType="Argument">
+            <stringProp name="Argument.name">Authorization</stringProp>
+            <stringProp name="Argument.value">Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNTUwZGFjMjUwMjE4OTQyZjRmOTEzOTFiYjZkY2NjNSIsInN1YiI6IjYwYWY2MDAxYzVjMWVmMDA1OWU2MzVlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wGzbkGdNmzm7cWjLfyNFVGdpLJKMelfCaoEbUuYs-CA </stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -45,7 +45,7 @@
           <stringProp name="TestPlan.comments">get_data_person_page_1</stringProp>
           <stringProp name="HTTPSampler.domain">api.themoviedb.org</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
-          <stringProp name="HTTPSampler.path">${ENDPOINT_PATH}</stringProp>
+          <stringProp name="HTTPSampler.path">${end_point}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -54,15 +54,14 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="page" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${PAGE_NUMBER}</stringProp>
+                <stringProp name="Argument.value">${page}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">page</stringProp>
-                <stringProp name="HTTPArgument.content_type">text/plain</stringProp>
               </elementProp>
               <elementProp name="api_key" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${API_KEY}</stringProp>
+                <stringProp name="Argument.value">${api_key}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">api_key</stringProp>
@@ -72,56 +71,7 @@
         </HTTPSamplerProxy>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="token">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Accept</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${TOKEN}</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_method" enabled="false">
-          <stringProp name="TestPlan.comments">get_person_popular</stringProp>
-          <stringProp name="HTTPSampler.domain">api.themoviedb.org</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
-          <stringProp name="HTTPSampler.path">/3/person/popular</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="api_key" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">e550dac250218942f4f91391bb6dccc5</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">api_key</stringProp>
-              </elementProp>
-              <elementProp name="page" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">1</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">page</stringProp>
-                <stringProp name="HTTPArgument.content_type">text/plain</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="token">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Accept</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
+            <collectionProp name="HeaderManager.headers"/>
           </HeaderManager>
           <hashTree/>
         </hashTree>
