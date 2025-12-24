@@ -9,9 +9,9 @@ Load testing endpoint `/3/person/changes?page=1` menggunakan Apache JMeter.
 - Auth: api_key query parameter (decoded from JWT)
 
 ## Hasil
-- 502 samples
+- 447 samples
 - 100% success (200 OK)
-- Avg response time: 228 ms
-- Throughput: 8.36 req/sec
+- Avg response time: 256.26 ms
+- Throughput: 7.46 req/sec
 
 Buka folder `tmdb-report-final/index.html` untuk dashboard lengkap.
